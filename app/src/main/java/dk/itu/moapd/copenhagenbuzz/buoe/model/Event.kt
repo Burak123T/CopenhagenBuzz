@@ -1,36 +1,10 @@
 package dk.itu.moapd.copenhagenbuzz.buoe.model
-class Event {
+data class Event(
+    val eventName: String = "",
+    val eventLocation: String = "",
+    val eventDate: String = "",
+    val eventType: String = "",
+    val description: String = "",
+    val photoUrl: String = "",
+)
 
-    private var eventName: String
-    private var eventLocation: String
-    // Add the missing attributes.
-
-    constructor(eventName: String, eventLocation: String) {
-        this.eventName = eventName
-        this.eventLocation = eventLocation
-
-        // Initialize the missing attributes.
-    }
-
-    fun getEventName(): String {
-        return eventName
-    }
-
-    fun setEventName(eventName: String) {
-        this.eventName = eventName
-    }
-
-    fun getEventLocation(): String {
-        return eventLocation
-    }
-
-    fun setEventLocation(eventLocation: String) {
-        this.eventLocation = eventLocation
-    }
-
-    // Implement the missing accessors and mutators methods.
-
-    override fun toString(): String {
-        return "Event(eventName='$eventName', eventLocation='$eventLocation')"
-    }
-}
