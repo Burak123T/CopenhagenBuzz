@@ -43,9 +43,6 @@ class MainActivity : AppCompatActivity() {
 
         // Link the UI components with the Kotlin source code.
         // TODO: turn into binding
-        eventName = findViewById(R.id.edit_text_event_name)
-        eventLocation = findViewById(R.id.edit_text_event_location)
-        addEventButton = findViewById(R.id.fab_add_event)
 
         // Listener for user interaction in the "Add Event" button
         addEventButton.setOnClickListener {
