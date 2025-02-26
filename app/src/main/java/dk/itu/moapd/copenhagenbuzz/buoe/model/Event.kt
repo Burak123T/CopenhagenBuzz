@@ -1,4 +1,4 @@
-package dk.itu.moapd.copenhagenbuzz.buoe
+package dk.itu.moapd.copenhagenbuzz.buoe.model
 class Event {
 
     private var eventName: String

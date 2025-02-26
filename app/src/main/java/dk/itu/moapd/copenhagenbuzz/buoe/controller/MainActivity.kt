@@ -1,4 +1,4 @@
-package dk.itu.moapd.copenhagenbuzz.buoe
+package dk.itu.moapd.copenhagenbuzz.buoe.controller
 
 import android.os.Bundle
 import android.util.Log
@@ -6,6 +6,7 @@ import android.widget.EditText
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.WindowCompat
 import com.google.android.material.floatingactionbutton.FloatingActionButton
+import dk.itu.moapd.copenhagenbuzz.buoe.model.Event
 import dk.itu.moapd.copenhagenbuzz.buoe.databinding.ActivityMainBinding
 import dk.itu.moapd.copenhagenbuzz.buoe.databinding.ContentMainBinding
 
