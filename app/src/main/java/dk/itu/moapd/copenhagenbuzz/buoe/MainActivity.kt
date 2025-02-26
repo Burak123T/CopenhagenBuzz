@@ -7,10 +7,12 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.WindowCompat
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import dk.itu.moapd.copenhagenbuzz.buoe.databinding.ActivityMainBinding
+import dk.itu.moapd.copenhagenbuzz.buoe.databinding.ContentMainBinding
 
 class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
+    private lateinit var contentBinding: ContentMainBinding
 
     companion object {
         // A set of private constants used in this class
@@ -32,6 +34,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
 
         binding = ActivityMainBinding.inflate(layoutInflater)
+        contentBinding = ContentMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
         // IMPORTANT:
@@ -39,6 +42,7 @@ class MainActivity : AppCompatActivity() {
         // This implementation is quite similar to a Java code. We will refactor this code in the next exercise session.
 
         // Link the UI components with the Kotlin source code.
+        // TODO: turn into binding
         eventName = findViewById(R.id.edit_text_event_name)
         eventLocation = findViewById(R.id.edit_text_event_location)
         addEventButton = findViewById(R.id.fab_add_event)
@@ -46,10 +50,11 @@ class MainActivity : AppCompatActivity() {
         // Listener for user interaction in the "Add Event" button
         addEventButton.setOnClickListener {
             // Only execute the following code when the user fills all EditText
-            if (eventName.text.toString().isNotEmpty() &&
-                eventLocation.text.toString().isNotEmpty()) {
+            if (contentBinding.editTextEventName.text.toString().isNotEmpty() &&
+                contentBinding.editTextEventLocation.text.toString().toString().isNotEmpty()) {
 
                 // Update the object attributes.
+                contentBinding.editTextEventName.text.toString()
                 event.setEventName(eventName.text.toString().trim())
                 event.setEventLocation(eventLocation.text.toString().trim())
 
