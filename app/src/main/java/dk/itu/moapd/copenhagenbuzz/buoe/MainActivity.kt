@@ -27,7 +27,7 @@ class MainActivity : AppCompatActivity() {
     // TODO: Implement the missing CO1 variables
 
     // An instance of the Event class
-    private val event: Event = Event("", "") // Initialize with empty strings
+    private val event: Event = Event() // Initialize with empty strings
 
     override fun onCreate(savedInstanceState: Bundle?) {
         WindowCompat.setDecorFitsSystemWindows(window, false)
@@ -52,7 +52,7 @@ class MainActivity : AppCompatActivity() {
 
                 // Update the object attributes.
                 contentBinding.editTextEventName.text.toString()
-                event.setEventName(eventName.text.toString().trim())
+                event.copy(eventName.text.toString().trim())
                 event.setEventLocation(eventLocation.text.toString().trim())
 
                 // TODO: Implement the missing code here
