@@ -34,8 +34,8 @@ class MainActivity : AppCompatActivity() {
     }
 
     // GUI variables.
-    private lateinit var eventName: EditText
-    private lateinit var eventLocation: EditText
+    //private lateinit var eventName: EditText
+    //private lateinit var eventLocation: EditText
     private lateinit var addEventButton: FloatingActionButton
 
     // TODO: Implement the missing CO1 variables
