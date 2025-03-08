@@ -5,18 +5,31 @@ import android.util.Log
 import android.widget.EditText
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.WindowCompat
+
+import com.google.android.material.snackbar.Snackbar
 import com.google.android.material.floatingactionbutton.FloatingActionButton
+
 import dk.itu.moapd.copenhagenbuzz.buoe.model.Event
 import dk.itu.moapd.copenhagenbuzz.buoe.databinding.ActivityMainBinding
 import dk.itu.moapd.copenhagenbuzz.buoe.databinding.ContentMainBinding
 
+/**
+ * The main activity of the application.
+ */
 class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
     private lateinit var contentBinding: ContentMainBinding
 
+    /**
+     * The root view of the activity.
+     */
+    val view = contentBinding.root
+
     companion object {
-        // A set of private constants used in this class
+        /**
+         * A set of private constants used in this class.
+         */
         private val TAG = MainActivity::class.qualifiedName
     }
 
@@ -28,7 +41,7 @@ class MainActivity : AppCompatActivity() {
     // TODO: Implement the missing CO1 variables
 
     // An instance of the Event class
-    private val event: Event = Event() // Initialize with empty strings
+    private var event: Event = Event() // Initialize with empty strings
 
     override fun onCreate(savedInstanceState: Bundle?) {
         WindowCompat.setDecorFitsSystemWindows(window, false)
@@ -52,19 +65,20 @@ class MainActivity : AppCompatActivity() {
                 contentBinding.editTextEventLocation.text.toString().toString().isNotEmpty()) {
 
                 // Update the object attributes.
-                contentBinding.editTextEventName.text.toString()
-                event.copy(eventName.text.toString().trim())
-                event.setEventLocation(eventLocation.text.toString().trim())
+                event = event.copy(eventName = contentBinding.editTextEventName.text.toString())
+                event = event.copy(eventLocation = contentBinding.editTextEventLocation.text.toString())
 
-                // TODO: Implement the missing code here
-
-                // Write in the Logcat system.
                 showMessage()
             }
         }
     }
 
+    /**
+     * Write in the Logcat system.
+     */
     private fun showMessage() {
         Log.d(TAG, event.toString())
+        Snackbar.make(view, event.toString(), Snackbar.LENGTH_SHORT)
+            .show()
     }
 } // The missing closing brace is added here
