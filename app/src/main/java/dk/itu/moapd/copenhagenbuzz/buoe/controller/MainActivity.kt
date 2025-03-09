@@ -5,6 +5,8 @@ import android.util.Log
 import android.widget.EditText
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.WindowCompat
+import android.content.Intent
+import android.widget.Button
 
 import com.google.android.material.snackbar.Snackbar
 import com.google.android.material.floatingactionbutton.FloatingActionButton
@@ -20,6 +22,8 @@ class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
     private lateinit var contentBinding: ContentMainBinding
+
+    private lateinit var userLoginButton: Button
 
     /**
      * The root view of the activity.
