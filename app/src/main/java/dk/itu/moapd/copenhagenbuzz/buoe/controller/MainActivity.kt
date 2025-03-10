@@ -56,13 +56,19 @@ class MainActivity : AppCompatActivity() {
         } else {
             contentBinding.toolAppBar.setNavigationIcon(R.drawable.baseline_add_24)
             showMessage(view, "Logged in as Guest")
+            contentBinding.toolAppBar.setNavigationOnClickListener {
+                showMessage(view, "Logging out (guest)...")
+                val intent = Intent(this, LoginActivity::class.java)
+                startActivity(intent)
+                finish()
+            }
         }
 
         // Listener for user interaction in the "Add Event" button
         contentBinding.fabAddEvent.setOnClickListener {
             // Only execute the following code when the user fills all EditText
             if (contentBinding.editTextEventName.text.toString().isNotEmpty() &&
-                contentBinding.editTextEventLocation.text.toString().toString().isNotEmpty()) {
+                contentBinding.editTextEventLocation.text.toString().isNotEmpty()) {
 
                 // Update the object attributes.
                 event = event.copy(eventName = contentBinding.editTextEventName.text.toString())
