@@ -3,15 +3,12 @@ package dk.itu.moapd.copenhagenbuzz.buoe.controller
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
-import android.widget.Button
 import androidx.appcompat.app.AppCompatActivity
 import androidx.coordinatorlayout.widget.CoordinatorLayout
 import androidx.core.view.WindowCompat
-import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.android.material.snackbar.Snackbar
 import dk.itu.moapd.copenhagenbuzz.buoe.R
 import dk.itu.moapd.copenhagenbuzz.buoe.databinding.ActivityMainBinding
-import dk.itu.moapd.copenhagenbuzz.buoe.databinding.ContentMainBinding
 import dk.itu.moapd.copenhagenbuzz.buoe.model.Event
 
 /**
@@ -70,9 +67,9 @@ class MainActivity : AppCompatActivity() {
                 // Update the object attributes.
                 event = event.copy(eventName = contentBinding.editTextEventName.text.toString())
                 event = event.copy(eventLocation = contentBinding.editTextEventLocation.text.toString())
-
-                showMessage(view)
             }
+
+            showMessage(view)
         }
     }
 
