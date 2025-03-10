@@ -1,9 +1,11 @@
 package dk.itu.moapd.copenhagenbuzz.buoe.controller
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.widget.Button
 import androidx.appcompat.app.AppCompatActivity
+import androidx.coordinatorlayout.widget.CoordinatorLayout
 import androidx.core.view.WindowCompat
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.android.material.snackbar.Snackbar
@@ -17,15 +19,8 @@ import dk.itu.moapd.copenhagenbuzz.buoe.model.Event
  */
 class MainActivity : AppCompatActivity() {
 
-    private lateinit var binding: ActivityMainBinding
-    private lateinit var contentBinding: ContentMainBinding
-
-    private lateinit var userLoginButton: Button
-
-    /**
-     * The root view of the activity.
-     */
-    val view = contentBinding.root
+    // TODO: change to ContentMainBinding (?)
+    private lateinit var contentBinding: ActivityMainBinding
 
     companion object {
         /**
@@ -34,11 +29,6 @@ class MainActivity : AppCompatActivity() {
         private val TAG = MainActivity::class.qualifiedName
     }
 
-    // GUI variables.
-    private lateinit var addEventButton: FloatingActionButton
-
-    private val getIsLoggedIn = intent.getBooleanExtra("isLoggedIn", false)
-
     // An instance of the Event class
     private var event: Event = Event() // Initialize with empty strings
 
@@ -46,18 +36,33 @@ class MainActivity : AppCompatActivity() {
         WindowCompat.setDecorFitsSystemWindows(window, false)
         super.onCreate(savedInstanceState)
 
-        binding = ActivityMainBinding.inflate(layoutInflater)
-        contentBinding = ContentMainBinding.inflate(layoutInflater)
-        setContentView(binding.root)
+        contentBinding = ActivityMainBinding.inflate(layoutInflater)
+
+        /**
+         * The root view of the activity.
+         */
+        val view = contentBinding.root
+
+        setContentView(view)
+
+        val getIsLoggedIn = intent.getBooleanExtra("isLoggedIn", false)
 
         if(getIsLoggedIn){
             contentBinding.toolAppBar.setNavigationIcon(R.drawable.baseline_arrow_circle_right_24)
+            showMessage(view, "Logged in as USER")
+            contentBinding.toolAppBar.setNavigationOnClickListener {
+                showMessage(view, "Logging out...")
+                val intent = Intent(this, LoginActivity::class.java)
+                startActivity(intent)
+                finish()
+            }
         } else {
-            contentBinding.toolAppBar.setNavigationIcon(R.drawable.baseline_festival_24)
+            contentBinding.toolAppBar.setNavigationIcon(R.drawable.baseline_add_24)
+            showMessage(view, "Logged in as Guest")
         }
 
         // Listener for user interaction in the "Add Event" button
-        addEventButton.setOnClickListener {
+        contentBinding.fabAddEvent.setOnClickListener {
             // Only execute the following code when the user fills all EditText
             if (contentBinding.editTextEventName.text.toString().isNotEmpty() &&
                 contentBinding.editTextEventLocation.text.toString().toString().isNotEmpty()) {
@@ -66,7 +71,7 @@ class MainActivity : AppCompatActivity() {
                 event = event.copy(eventName = contentBinding.editTextEventName.text.toString())
                 event = event.copy(eventLocation = contentBinding.editTextEventLocation.text.toString())
 
-                showMessage()
+                showMessage(view)
             }
         }
     }
@@ -74,9 +79,18 @@ class MainActivity : AppCompatActivity() {
     /**
      * Write in the Logcat system.
      */
-    private fun showMessage() {
+    private fun showMessage(view: CoordinatorLayout) {
         Log.d(TAG, event.toString())
         Snackbar.make(view, event.toString(), Snackbar.LENGTH_SHORT)
+            .show()
+    }
+
+    /**
+     * Write custom message as SnackBar.
+     */
+    private fun showMessage(view: CoordinatorLayout, msg: String) {
+        Log.d(TAG, event.toString())
+        Snackbar.make(view, msg, Snackbar.LENGTH_SHORT)
             .show()
     }
 } // The missing closing brace is added here

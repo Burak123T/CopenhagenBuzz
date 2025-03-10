@@ -19,10 +19,6 @@ import dk.itu.moapd.copenhagenbuzz.buoe.databinding.ActivityLoginBinding
 class LoginActivity : AppCompatActivity() {
     private lateinit var loginBinding: ActivityLoginBinding
 
-    companion object {
-        var isLoggedIn = false
-    }
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
@@ -33,6 +29,11 @@ class LoginActivity : AppCompatActivity() {
         loginBinding.loginButton.setOnClickListener {
             val goToMainActivityIntent = Intent(this, MainActivity::class.java)
             goToMainActivityIntent.putExtra("isLoggedIn", true)
+            startActivity(goToMainActivityIntent)
+        }
+        loginBinding.guestButton.setOnClickListener {
+            val goToMainActivityIntent = Intent(this, MainActivity::class.java)
+            goToMainActivityIntent.putExtra("isLoggedIn", false)
             startActivity(goToMainActivityIntent)
         }
 

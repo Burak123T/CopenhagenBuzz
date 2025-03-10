@@ -13,7 +13,7 @@
             android:id="@+id/tool_app_bar"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
-            app:navigationIcon="@drawable/baseline_arrow_circle_right_24"
+            app:navigationIcon="@drawable/baseline_accessibility_24"
             android:background="?attr/colorPrimary"
             app:titleTextColor="?attr/colorOnPrimary"
             />
