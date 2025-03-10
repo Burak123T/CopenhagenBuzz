@@ -2,18 +2,15 @@ package dk.itu.moapd.copenhagenbuzz.buoe.controller
 
 import android.os.Bundle
 import android.util.Log
-import android.widget.EditText
+import android.widget.Button
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.WindowCompat
-import android.content.Intent
-import android.widget.Button
-
-import com.google.android.material.snackbar.Snackbar
 import com.google.android.material.floatingactionbutton.FloatingActionButton
-
-import dk.itu.moapd.copenhagenbuzz.buoe.model.Event
+import com.google.android.material.snackbar.Snackbar
+import dk.itu.moapd.copenhagenbuzz.buoe.R
 import dk.itu.moapd.copenhagenbuzz.buoe.databinding.ActivityMainBinding
 import dk.itu.moapd.copenhagenbuzz.buoe.databinding.ContentMainBinding
+import dk.itu.moapd.copenhagenbuzz.buoe.model.Event
 
 /**
  * The main activity of the application.
@@ -38,11 +35,9 @@ class MainActivity : AppCompatActivity() {
     }
 
     // GUI variables.
-    //private lateinit var eventName: EditText
-    //private lateinit var eventLocation: EditText
     private lateinit var addEventButton: FloatingActionButton
 
-    // TODO: Implement the missing CO1 variables
+    private val getIsLoggedIn = intent.getBooleanExtra("isLoggedIn", false)
 
     // An instance of the Event class
     private var event: Event = Event() // Initialize with empty strings
@@ -55,12 +50,11 @@ class MainActivity : AppCompatActivity() {
         contentBinding = ContentMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        // IMPORTANT:
-        // This is an awful implementation. I only implemented it like that because the students need to learn more about Moshi.
-        // This implementation is quite similar to a Java code. We will refactor this code in the next exercise session.
-
-        // Link the UI components with the Kotlin source code.
-        // TODO: turn into binding
+        if(getIsLoggedIn){
+            contentBinding.toolAppBar.setNavigationIcon(R.drawable.baseline_arrow_circle_right_24)
+        } else {
+            contentBinding.toolAppBar.setNavigationIcon(R.drawable.baseline_festival_24)
+        }
 
         // Listener for user interaction in the "Add Event" button
         addEventButton.setOnClickListener {
