@@ -13,6 +13,7 @@
         android:icon="@drawable/baseline_date_range_24"
         android:title="@string/nav_menu_cal" />
     <item
+
         android:id="@+id/navigation_maps"
         android:icon="@drawable/ic_maps_foreground"
         android:title="@string/nav_menu_maps" />
