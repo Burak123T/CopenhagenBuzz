@@ -5,7 +5,8 @@
         android:icon="@drawable/ic_timeline_foreground"
         android:title="@string/nav_menu_time" />
     <item
-        android:id="@+id/navigation_fav"
+
+        android:id="@+id/navigation_favorites"
         android:icon="@drawable/ic_favorite_foreground"
         android:title="@string/nav_menu_fav" />
     <item
