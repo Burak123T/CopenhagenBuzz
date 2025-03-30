@@ -29,4 +29,8 @@
     <string name="event_date">Event date</string>
     <string name="event_description">Event description</string>
     <string name="add_event">Add event</string>
+    <string name="click_me">Click Me</string>
+    <string name="info">Info</string>
+    <string name="edit">edit</string>
+    <string name="example_image">Example Image</string>
 </resources>
