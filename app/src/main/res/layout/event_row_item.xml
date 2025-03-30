@@ -53,6 +53,20 @@
             app:layout_constraintTop_toBottomOf="@+id/eventDateTextView"
             tools:text="Description of the event. Max 3 lines." />
 
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/left_guide"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.3" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/right_guide"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.7" />
+
         <com.google.android.material.button.MaterialButton
             android:id="@+id/editMaterialButton"
             android:layout_width="wrap_content"
@@ -60,11 +74,12 @@
             android:text="@string/edit"
             app:cornerRadius="8dp"
             app:elevation="4dp"
-            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginEnd="8dp"
+            app:layout_constraintStart_toStartOf="@+id/left_guide"
+            app:layout_constraintTop_toBottomOf="@+id/eventDescriptionTextView"
             app:layout_constraintEnd_toStartOf="@+id/infoOutlinedMaterialButton"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/eventDescriptionTextView" />
+            app:layout_constraintHorizontal_chainStyle="packed"
+            app:layout_constraintHorizontal_bias="0.5" />
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/infoOutlinedMaterialButton"
@@ -74,10 +89,8 @@
             android:text="@string/info"
             app:cornerRadius="8dp"
             app:elevation="4dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintEnd_toEndOf="@+id/right_guide"
             app:layout_constraintStart_toEndOf="@+id/editMaterialButton"
-            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/eventDescriptionTextView" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
