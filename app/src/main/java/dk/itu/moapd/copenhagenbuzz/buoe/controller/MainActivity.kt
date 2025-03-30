@@ -106,6 +106,7 @@ class MainActivity : AppCompatActivity() {
         // Listener for user interaction in the "Add Event" button
         contentBinding.fabAddEvent.setOnClickListener {
             // Only execute the following code when the user fills all EditText
+            /*
             if (contentBinding.editTextEventName.text.toString().isNotEmpty() &&
                 contentBinding.editTextEventLocation.text.toString().isNotEmpty()) {
 
@@ -115,6 +116,8 @@ class MainActivity : AppCompatActivity() {
             }
 
             showMessage(view)
+
+             */
         }
     }
 
