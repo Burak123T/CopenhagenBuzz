@@ -48,9 +48,8 @@ class AddNewEventDialog: DialogFragment() {
         listener = activity as? AddEventDialogListener
 
         dialogBinding.editTextEventDate.setOnClickListener {
-            val datePickerBuilder = MaterialDatePicker.Builder.datePicker()
-            datePickerBuilder.setTitleText("Select a date")
-            datePickerBuilder.setSelection(MaterialDatePicker.todayInUtcMilliseconds())
+            val datePickerBuilder = MaterialDatePicker.Builder.dateRangePicker()
+            datePickerBuilder.setTitleText("Select start/end date")
             val datePicker = datePickerBuilder.build()
 
             datePicker.addOnPositiveButtonClickListener {
