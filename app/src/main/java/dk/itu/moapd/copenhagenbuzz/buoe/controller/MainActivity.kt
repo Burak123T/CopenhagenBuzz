@@ -17,7 +17,7 @@ import androidx.fragment.app.Fragment
 /**
  * The main activity of the application.
  */
-class MainActivity : AppCompatActivity() {
+class MainActivity : AppCompatActivity(), AddNewEventDialog.AddEventDialogListener {
 
     // TODO: change to ContentMainBinding (?)
     private lateinit var contentBinding: ActivityMainBinding
@@ -69,13 +69,6 @@ class MainActivity : AppCompatActivity() {
                 .commit()
         }
 
-
-
-
-        // Navigation item listener
-
-
-
         /**
          * The root view of the activity.
          */
@@ -105,29 +98,13 @@ class MainActivity : AppCompatActivity() {
 
         // Listener for user interaction in the "Add Event" button
         contentBinding.fabAddEvent.setOnClickListener {
-            // Only execute the following code when the user fills all EditText
-            /*
-            if (contentBinding.editTextEventName.text.toString().isNotEmpty() &&
-                contentBinding.editTextEventLocation.text.toString().isNotEmpty()) {
-
-                // Update the object attributes.
-                event = event.copy(eventName = contentBinding.editTextEventName.text.toString())
-                event = event.copy(eventLocation = contentBinding.editTextEventLocation.text.toString())
-            }
-
-            showMessage(view)
-
-             */
+            val dialog = AddNewEventDialog()
+            dialog.show(supportFragmentManager, "AddNewEventDialog")
         }
     }
 
-    /**
-     * Write in the Logcat system.
-     */
-    private fun showMessage(view: CoordinatorLayout) {
-        Log.d(TAG, event.toString())
-        Snackbar.make(view, event.toString(), Snackbar.LENGTH_SHORT)
-            .show()
+    override fun onEventAdded(event: Event) {
+        showMessage(contentBinding.root, "Event added successfully")
     }
 
     /**
@@ -138,4 +115,4 @@ class MainActivity : AppCompatActivity() {
         Snackbar.make(view, msg, Snackbar.LENGTH_SHORT)
             .show()
     }
-} // The missing closing brace is added here
+}

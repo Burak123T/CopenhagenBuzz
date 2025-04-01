@@ -33,4 +33,7 @@
     <string name="info">Info</string>
     <string name="edit">edit</string>
     <string name="example_image">Example Image</string>
+    <string name="timeline">Timeline</string>
+    <string name="maps">Maps</string>
+    <string name="save_event">Save Event</string>
 </resources>
