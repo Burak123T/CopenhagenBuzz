@@ -9,7 +9,7 @@
         android:id="@+id/maps_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Maps"
+        android:text="@string/maps"
         android:textSize="24sp"
         android:textColor="@android:color/black" />
 </LinearLayout>
