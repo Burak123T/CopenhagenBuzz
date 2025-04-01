@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/timeline_fragment">
+
+    <fragment
+        android:id="@+id/timeline_fragment"
+        android:name="dk.itu.moapd.copenhagenbuzz.buoe.controller.TimelineFragment"
+        android:label="@string/timeline" />
+    <fragment
+        android:id="@+id/favorites_fragment"
+        android:name="dk.itu.moapd.copenhagenbuzz.buoe.controller.FavoritesFragment"
+        android:label="@string/favorites" />
+    <fragment
+        android:id="@+id/maps_fragment"
+        android:name="dk.itu.moapd.copenhagenbuzz.buoe.controller.MapsFragment"
+        android:label="@string/maps" />
+    <fragment
+        android:id="@+id/calendar_fragment"
+        android:name="dk.itu.moapd.copenhagenbuzz.buoe.controller.CalendarFragment"
+        android:label="@string/calendar" />
+</navigation>

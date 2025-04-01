@@ -1,21 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
-        android:id="@+id/navigation_timeline"
+        android:id="@+id/timeline_fragment"
         android:icon="@drawable/ic_timeline_foreground"
         android:title="@string/nav_menu_time" />
     <item
 
-        android:id="@+id/navigation_favorites"
+        android:id="@+id/favorites_fragment"
         android:icon="@drawable/ic_favorite_foreground"
         android:title="@string/nav_menu_fav" />
     <item
-        android:id="@+id/navigation_calendar"
+        android:id="@+id/calendar_fragment"
         android:icon="@drawable/baseline_date_range_24"
         android:title="@string/nav_menu_cal" />
     <item
 
-        android:id="@+id/navigation_maps"
+        android:id="@+id/maps_fragment"
         android:icon="@drawable/ic_maps_foreground"
         android:title="@string/nav_menu_maps" />
 </menu>

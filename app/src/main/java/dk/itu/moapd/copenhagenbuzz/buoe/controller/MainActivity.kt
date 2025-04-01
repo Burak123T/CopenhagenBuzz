@@ -6,12 +6,12 @@ import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.coordinatorlayout.widget.CoordinatorLayout
 import androidx.core.view.WindowCompat
+import androidx.navigation.fragment.NavHostFragment
+import androidx.navigation.ui.setupWithNavController
 import com.google.android.material.snackbar.Snackbar
 import dk.itu.moapd.copenhagenbuzz.buoe.R
-import dk.itu.moapd.copenhagenbuzz.buoe.databinding.ActivityMainBinding
+import dk.itu.moapd.copenhagenbuzz.buoe.databinding.ContentMainBinding
 import dk.itu.moapd.copenhagenbuzz.buoe.model.Event
-import com.google.android.material.bottomnavigation.BottomNavigationView
-import androidx.fragment.app.Fragment
 
 
 /**
@@ -20,7 +20,7 @@ import androidx.fragment.app.Fragment
 class MainActivity : AppCompatActivity(), AddNewEventDialog.AddEventDialogListener {
 
     // TODO: change to ContentMainBinding (?)
-    private lateinit var contentBinding: ActivityMainBinding
+    private lateinit var contentBinding: ContentMainBinding
 
     companion object {
         /**
@@ -32,42 +32,20 @@ class MainActivity : AppCompatActivity(), AddNewEventDialog.AddEventDialogListen
     // An instance of the Event class
     private var event: Event = Event() // Initialize with empty strings
 
-    private val navListener = BottomNavigationView.OnNavigationItemSelectedListener { item ->
-        var selectedFragment: Fragment? = null
-
-        when (item.itemId) {
-            R.id.navigation_timeline -> selectedFragment = TimelineFragment()
-            R.id.navigation_favorites -> selectedFragment = FavoritesFragment()
-            R.id.navigation_maps -> selectedFragment = MapsFragment()
-            R.id.navigation_calendar -> selectedFragment = CalendarFragment()
-        }
-
-        // Replace the current fragment with the selected one
-        selectedFragment?.let {
-            supportFragmentManager.beginTransaction()
-                .replace(R.id.nav_host_fragment, it)
-                .commit()
-        }
-
-        true
-    }
     override fun onCreate(savedInstanceState: Bundle?) {
         WindowCompat.setDecorFitsSystemWindows(window, false)
         super.onCreate(savedInstanceState)
 
-        contentBinding = ActivityMainBinding.inflate(layoutInflater)
+        contentBinding = ContentMainBinding.inflate(layoutInflater)
         setContentView(contentBinding.root)
 
+        val navHostFragment = supportFragmentManager
+            .findFragmentById(R.id.fragment_container_view) as NavHostFragment
 
-        // Bottom navigation listener
-        contentBinding.bottomNavigation.setOnNavigationItemSelectedListener(navListener)
+        val navController = navHostFragment.navController
 
-        // Load the default fragment (Timeline)
-        if (savedInstanceState == null) {
-            supportFragmentManager.beginTransaction()
-                .replace(R.id.nav_host_fragment, TimelineFragment()) // Replace with TimelineFragment initially
-                .commit()
-        }
+        // Setup bottom navigation bar
+        contentBinding.bottomNavigation.setupWithNavController(navController)
 
         /**
          * The root view of the activity.
