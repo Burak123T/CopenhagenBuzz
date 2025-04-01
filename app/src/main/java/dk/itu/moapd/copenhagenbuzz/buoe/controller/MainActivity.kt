@@ -22,16 +22,6 @@ class MainActivity : AppCompatActivity(), AddNewEventDialog.AddEventDialogListen
     // TODO: change to ContentMainBinding (?)
     private lateinit var contentBinding: ContentMainBinding
 
-    companion object {
-        /**
-         * A set of private constants used in this class.
-         */
-        private val TAG = MainActivity::class.qualifiedName
-    }
-
-    // An instance of the Event class
-    private var event: Event = Event() // Initialize with empty strings
-
     override fun onCreate(savedInstanceState: Bundle?) {
         WindowCompat.setDecorFitsSystemWindows(window, false)
         super.onCreate(savedInstanceState)
@@ -89,7 +79,6 @@ class MainActivity : AppCompatActivity(), AddNewEventDialog.AddEventDialogListen
      * Write custom message as SnackBar.
      */
     private fun showMessage(view: CoordinatorLayout, msg: String) {
-        Log.d(TAG, event.toString())
         Snackbar.make(view, msg, Snackbar.LENGTH_SHORT)
             .show()
     }
