@@ -25,6 +25,12 @@ class EventAdapter(
             descriptionTextView.text = event.description
             dateTextView.text = event.eventDate
 
+            if(event.isFavorite){
+                isFavorite.setImageResource(R.drawable.baseline_assistant_photo_24)
+            } else{
+                isFavorite.setImageResource(R.drawable.outline_assistant_photo_24)
+            }
+
             // Testing to see if the mock image is loaded
             Picasso.get().load(exampleImage).into(imageView)
 
@@ -48,5 +54,6 @@ class EventAdapter(
         val descriptionTextView: TextView = view.findViewById(R.id.eventDescriptionTextView)
         val dateTextView: TextView = view.findViewById(R.id.eventDateTextView)
         val imageView: ImageView = view.findViewById(R.id.imageView)
+        val isFavorite: ImageView = view.findViewById(R.id.save_event_icon)
     }
 }
