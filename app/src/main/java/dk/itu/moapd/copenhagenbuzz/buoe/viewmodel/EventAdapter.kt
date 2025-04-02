@@ -1,7 +1,6 @@
 package dk.itu.moapd.copenhagenbuzz.buoe.viewmodel
 
 import android.content.Context
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -20,14 +19,14 @@ class EventAdapter(
     private fun populateViewHolder(viewHolder: ViewHolder, event: Event) {
         with(viewHolder) {
 
-            Log.d("EventAdapter", "Attempting to load image URL: ${event.photoUrl}")
+            val exampleImage = "https://picsum.photos/200"
 
             titleTextView.text = event.eventName
             descriptionTextView.text = event.description
             dateTextView.text = event.eventDate
 
             // Testing to see if the mock image is loaded
-            Picasso.get().load(event.photoUrl).into(imageView)
+            Picasso.get().load(exampleImage).into(imageView)
 
         }
     }

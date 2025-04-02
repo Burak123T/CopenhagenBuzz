@@ -21,7 +21,8 @@
             android:src="@drawable/outline_assistant_photo_24"
             app:layout_constraintEnd_toEndOf="@id/eventDateTextView"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"/>
+            app:layout_constraintTop_toTopOf="parent"
+            android:layout_marginStart="275dp" />
 
         <TextView
             android:id="@+id/eventNameTextView"
