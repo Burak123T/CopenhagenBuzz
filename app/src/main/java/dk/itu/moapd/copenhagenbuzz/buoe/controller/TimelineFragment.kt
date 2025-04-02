@@ -1,19 +1,15 @@
 package dk.itu.moapd.copenhagenbuzz.buoe.controller
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
-import androidx.recyclerview.widget.LinearLayoutManager
-import com.github.javafaker.Faker
-import dk.itu.moapd.copenhagenbuzz.buoe.R
 import dk.itu.moapd.copenhagenbuzz.buoe.databinding.FragmentTimelineBinding
 import dk.itu.moapd.copenhagenbuzz.buoe.model.Event
 import dk.itu.moapd.copenhagenbuzz.buoe.viewmodel.DataViewModel
 import dk.itu.moapd.copenhagenbuzz.buoe.viewmodel.EventAdapter
-import java.util.Random
 
 /**
  * A simple [Fragment] subclass for viewing the timeline of available events around CPH.
