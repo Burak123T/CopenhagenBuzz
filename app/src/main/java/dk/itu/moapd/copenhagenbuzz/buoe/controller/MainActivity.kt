@@ -15,21 +15,40 @@ import dk.itu.moapd.copenhagenbuzz.buoe.model.Event
 
 /**
  * The main activity of the application.
+ * Acts as the main activity, where the user can login.
+ * Upon logging in (USER or GUEST), the user can add new events, and view the timeline, calendar, and maps.
+ * The Timeline Fragment will be the default fragment to be shown.
+ *
+ * @property contentBinding
+ *
  */
 class MainActivity : AppCompatActivity(), AddNewEventDialog.AddEventDialogListener {
 
+    /**
+     * The binding for the content of the activity.
+     */
     private lateinit var contentBinding: ContentMainBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         WindowCompat.setDecorFitsSystemWindows(window, false)
         super.onCreate(savedInstanceState)
 
+        /**
+         * Inflate the layout using view binding.
+         */
         contentBinding = ContentMainBinding.inflate(layoutInflater)
+
         setContentView(contentBinding.root)
 
+        /**
+         * Initialize navigation controller for bottom navigation bar.
+         */
         val navHostFragment = supportFragmentManager
             .findFragmentById(R.id.fragment_container_view) as NavHostFragment
 
+        /**
+         * Initialize the navigation controller.
+         */
         val navController = navHostFragment.navController
 
         // Setup bottom navigation bar
@@ -40,6 +59,9 @@ class MainActivity : AppCompatActivity(), AddNewEventDialog.AddEventDialogListen
          */
         val view = contentBinding.root
 
+        /**
+         * Check if the user is logged in.
+         */
         val getIsLoggedIn = intent.getBooleanExtra("isLoggedIn", false)
 
         if(getIsLoggedIn){
@@ -69,12 +91,24 @@ class MainActivity : AppCompatActivity(), AddNewEventDialog.AddEventDialogListen
         }
     }
 
+    /**
+     * Overridden callback function for when an event is added.
+     *
+     * @param event The event that was added.
+     *
+     * @return Unit
+     */
     override fun onEventAdded(event: Event) {
         showMessage(contentBinding.root, "Event added successfully")
     }
 
     /**
      * Write custom message as SnackBar.
+     *
+     * @param view The root view of the activity.
+     * @param msg The message to be displayed.
+     *
+     * @return Unit
      */
     private fun showMessage(view: CoordinatorLayout, msg: String) {
         Snackbar.make(view, msg, Snackbar.LENGTH_SHORT)
