@@ -16,9 +16,7 @@ import dk.itu.moapd.copenhagenbuzz.buoe.viewmodel.EventAdapter
 import java.util.Random
 
 /**
- * A simple [Fragment] subclass.
- * Use the [TimelineFragment.newInstance] factory method to
- * create an instance of this fragment.
+ * A simple [Fragment] subclass for viewing the timeline of available events around CPH.
  */
 class TimelineFragment : Fragment() {
 

@@ -2,7 +2,6 @@ package dk.itu.moapd.copenhagenbuzz.buoe.controller
 
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.coordinatorlayout.widget.CoordinatorLayout
 import androidx.core.view.WindowCompat
@@ -19,7 +18,6 @@ import dk.itu.moapd.copenhagenbuzz.buoe.model.Event
  */
 class MainActivity : AppCompatActivity(), AddNewEventDialog.AddEventDialogListener {
 
-    // TODO: change to ContentMainBinding (?)
     private lateinit var contentBinding: ContentMainBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {

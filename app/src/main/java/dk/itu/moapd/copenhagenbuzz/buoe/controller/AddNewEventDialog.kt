@@ -1,7 +1,5 @@
 package dk.itu.moapd.copenhagenbuzz.buoe.controller
 
-import android.app.TimePickerDialog
-import android.icu.util.Calendar
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
