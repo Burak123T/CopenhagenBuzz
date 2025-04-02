@@ -54,7 +54,7 @@ class MainActivity : AppCompatActivity(), AddNewEventDialog.AddEventDialogListen
                 finish()
             }
         } else {
-            contentBinding.toolAppBar.setNavigationIcon(R.drawable.round_attribution_24)
+            contentBinding.toolAppBar.setNavigationIcon(R.drawable.outline_photo_camera_front_24)
             showMessage(view, "Logged in as Guest")
             contentBinding.toolAppBar.setNavigationOnClickListener {
                 showMessage(view, "Logging out (guest)...")
