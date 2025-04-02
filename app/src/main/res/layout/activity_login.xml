@@ -7,15 +7,27 @@
     android:layout_height="match_parent"
     tools:context=".controller.LoginActivity">
 
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/left_guide"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.25" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/right_guide"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.75" />
+
     <Button
         android:id="@+id/login_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="108dp"
-        android:text="Login"
-
+        android:text="@string/login"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintStart_toStartOf="@id/left_guide"
         app:layout_constraintTop_toBottomOf="@+id/cphbuzz_text_view" />
 
     <Button
@@ -23,16 +35,15 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="32dp"
-        android:layout_marginEnd="108dp"
-        android:text="Guest"
-        app:layout_constraintEnd_toEndOf="parent"
+        android:text="@string/guest"
+        app:layout_constraintEnd_toEndOf="@id/right_guide"
         app:layout_constraintTop_toBottomOf="@+id/cphbuzz_text_view" />
 
     <TextView
         android:id="@+id/cphbuzz_text_view"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="CopenhagenBuzz"
+        android:text="@string/copenhagenbuzz"
         android:textSize="30sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/login_button"
