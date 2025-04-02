@@ -6,5 +6,6 @@ data class Event(
     val eventType: String = "",
     val description: String = "",
     val photoUrl: String = "",
+    val isFavorite: Boolean = false
 )
 
