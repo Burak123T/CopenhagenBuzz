@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.github.javafaker.Faker
 import dk.itu.moapd.copenhagenbuzz.buoe.R
 import dk.itu.moapd.copenhagenbuzz.buoe.databinding.FragmentTimelineBinding
+import dk.itu.moapd.copenhagenbuzz.buoe.model.Event
 import dk.itu.moapd.copenhagenbuzz.buoe.viewmodel.DataViewModel
 import dk.itu.moapd.copenhagenbuzz.buoe.viewmodel.EventAdapter
 import java.util.Random
@@ -23,7 +24,6 @@ class TimelineFragment : Fragment() {
 
     private val dataViewModel: DataViewModel by activityViewModels()
     private lateinit var fragmentTimelineBinding: FragmentTimelineBinding
-    private lateinit var adapter: EventAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -36,11 +36,13 @@ class TimelineFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
         // Initialize the ListView and Adapter
-        adapter = EventAdapter(context = requireContext(), emptyList())
-
+        val adapter = EventAdapter(requireContext(),  mutableListOf<Event>())
         fragmentTimelineBinding.listView.adapter = adapter
 
+        dataViewModel.events.observe(viewLifecycleOwner) { events ->
+            adapter.clear()
+            adapter.addAll(events)
+        }
     }
 }
