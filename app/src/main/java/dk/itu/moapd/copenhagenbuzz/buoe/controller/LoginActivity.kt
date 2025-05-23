@@ -6,8 +6,12 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
-
+import com.firebase.ui.auth.AuthUI
+import com.firebase.ui.auth.FirebaseAuthUIActivityResultContract
+import com.firebase.ui.auth.data.model.FirebaseAuthUIAuthenticationResult
+import com.google.firebase.auth.FirebaseAuth
 import dk.itu.moapd.copenhagenbuzz.buoe.databinding.ActivityLoginBinding
+
 
 /**
  * The login activity of the application. Acts as the main activity, where the user can login
@@ -20,6 +24,7 @@ class LoginActivity : AppCompatActivity() {
     private lateinit var loginBinding: ActivityLoginBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
+
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
 
@@ -27,9 +32,14 @@ class LoginActivity : AppCompatActivity() {
         setContentView(loginBinding.root) // Set root view of binding the content view
 
         loginBinding.loginButton.setOnClickListener {
-            val goToMainActivityIntent = Intent(this, MainActivity::class.java)
-            goToMainActivityIntent.putExtra("isLoggedIn", true)
-            startActivity(goToMainActivityIntent)
+            val auth = FirebaseAuth.getInstance()
+            if (auth.currentUser != null) {
+                val goToMainActivityIntent = Intent(this, MainActivity::class.java)
+                goToMainActivityIntent.putExtra("isLoggedIn", true)
+                startActivity(goToMainActivityIntent)
+            } else {
+                startSignIn()
+            }
         }
         loginBinding.guestButton.setOnClickListener {
             val goToMainActivityIntent = Intent(this, MainActivity::class.java)
@@ -42,5 +52,39 @@ class LoginActivity : AppCompatActivity() {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
+
     }
+
+    private val signInLauncher = registerForActivityResult(
+        FirebaseAuthUIActivityResultContract()
+    ) { result: FirebaseAuthUIAuthenticationResult? -> resultSignIn(result)}
+
+
+    /**
+     * Starting the sign-in process.
+     */
+    private fun startSignIn() {
+        val signInIntent = AuthUI.getInstance()
+            .createSignInIntentBuilder() // ... options ...
+            .build()
+
+        signInLauncher.launch(signInIntent)
+    }
+
+    /**
+     * Handling the result of the sign-in process.
+     */
+    private fun resultSignIn(result: FirebaseAuthUIAuthenticationResult?){
+        if (result?.resultCode == RESULT_OK) {
+            val goToMainActivityIntent = Intent(this, MainActivity::class.java)
+            goToMainActivityIntent.putExtra("isLoggedIn", true)
+            startActivity(goToMainActivityIntent)
+        } else {
+            if(result?.idpResponse != null){
+                println("Error: ${result.idpResponse}")
+            }
+        }
+    }
+
+
 }

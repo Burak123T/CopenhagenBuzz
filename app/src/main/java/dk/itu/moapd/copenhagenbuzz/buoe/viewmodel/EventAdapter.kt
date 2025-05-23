@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import android.widget.ArrayAdapter
 import android.widget.ImageView
 import android.widget.TextView
+import com.google.firebase.auth.FirebaseAuth
 import com.squareup.picasso.Picasso
 import dk.itu.moapd.copenhagenbuzz.buoe.R
 import dk.itu.moapd.copenhagenbuzz.buoe.model.Event
@@ -16,8 +17,15 @@ class EventAdapter(
     data: List<Event>,
 ) : ArrayAdapter<Event>(context, R.layout.event_row_item, data) {
 
+    /**
+     * Get the Firebase authentication instance.
+     */
+    private lateinit var getFBAuthentication: FirebaseAuth
+
     private fun populateViewHolder(viewHolder: ViewHolder, event: Event) {
         with(viewHolder) {
+
+            getFBAuthentication = FirebaseAuth.getInstance()
 
             val exampleImage = "https://picsum.photos/200"
 
@@ -25,10 +33,14 @@ class EventAdapter(
             descriptionTextView.text = event.description
             dateTextView.text = event.eventDate
 
-            if(event.isFavorite){
-                isFavorite.setImageResource(R.drawable.baseline_assistant_photo_24)
+            if(getFBAuthentication.currentUser != null){
+                if(event.isFavorite){
+                    isFavorite.setImageResource(R.drawable.baseline_assistant_photo_24)
+                } else{
+                    isFavorite.setImageResource(R.drawable.outline_assistant_photo_24)
+                }
             } else{
-                isFavorite.setImageResource(R.drawable.outline_assistant_photo_24)
+                isFavorite.visibility = View.GONE
             }
 
             // Testing to see if the mock image is loaded

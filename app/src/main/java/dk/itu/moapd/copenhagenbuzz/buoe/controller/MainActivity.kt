@@ -8,6 +8,7 @@ import androidx.core.view.WindowCompat
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupWithNavController
 import com.google.android.material.snackbar.Snackbar
+import com.google.firebase.auth.FirebaseAuth
 import dk.itu.moapd.copenhagenbuzz.buoe.R
 import dk.itu.moapd.copenhagenbuzz.buoe.databinding.ContentMainBinding
 import dk.itu.moapd.copenhagenbuzz.buoe.model.Event
@@ -29,6 +30,11 @@ class MainActivity : AppCompatActivity(), AddNewEventDialog.AddEventDialogListen
      */
     private lateinit var contentBinding: ContentMainBinding
 
+    /**
+     * Get the Firebase authentication instance.
+     */
+    private lateinit var getFBAuthentication: FirebaseAuth
+
     override fun onCreate(savedInstanceState: Bundle?) {
         WindowCompat.setDecorFitsSystemWindows(window, false)
         super.onCreate(savedInstanceState)
@@ -39,6 +45,8 @@ class MainActivity : AppCompatActivity(), AddNewEventDialog.AddEventDialogListen
         contentBinding = ContentMainBinding.inflate(layoutInflater)
 
         setContentView(contentBinding.root)
+
+        getFBAuthentication = FirebaseAuth.getInstance()
 
         /**
          * Initialize navigation controller for bottom navigation bar.
@@ -69,6 +77,7 @@ class MainActivity : AppCompatActivity(), AddNewEventDialog.AddEventDialogListen
             showMessage(view, "Logged in as USER")
             contentBinding.toolAppBar.setNavigationOnClickListener {
                 showMessage(view, "Logging out...")
+                getFBAuthentication.signOut()
                 val intent = Intent(this, LoginActivity::class.java)
                 startActivity(intent)
                 finish()
@@ -86,8 +95,12 @@ class MainActivity : AppCompatActivity(), AddNewEventDialog.AddEventDialogListen
 
         // Listener for user interaction in the "Add Event" button
         contentBinding.fabAddEvent.setOnClickListener {
-            val dialog = AddNewEventDialog()
-            dialog.show(supportFragmentManager, "AddNewEventDialog")
+            if(getFBAuthentication.currentUser == null){
+                showMessage(view, "Log in to add an event")
+            } else {
+                val dialog = AddNewEventDialog()
+                dialog.show(supportFragmentManager, "AddNewEventDialog")
+            }
         }
     }
 
