@@ -10,20 +10,26 @@ import kotlinx.coroutines.launch
 import kotlin.random.Random
 
 class DataViewModel : ViewModel() {
-    private val listMutableLiveData = MutableLiveData<List<Event>>(emptyList())
-    val events: LiveData<List<Event>> = listMutableLiveData
+    private val _events = MutableLiveData<List<Event>>(emptyList())
+    val events: LiveData<List<Event>> = _events
+
+    private val _favorites = MutableLiveData<List<Event>>(emptyList())
+    val favorites: LiveData<List<Event>> = _favorites
+
     init {
         mockEventsAsync()
     }
 
     private fun mockEventsAsync() {
-        val amount = Random.nextInt(3, 15)
-        viewModelScope.launch { // launch the computational heavy operation on another thread
-            listMutableLiveData.value = generateMockEvents(amount)
+        val amount = Random.nextInt(15, 25)
+        viewModelScope.launch {
+            val allEvents = generateMockEvents(amount)
+            _events.value = allEvents
+            _favorites.value = allEvents.filter { it.isFavorite }.shuffled().take(10)
         }
     }
 
-    private fun generateMockEvents(amount : Int): List<Event> {
+    private fun generateMockEvents(amount: Int): List<Event> {
         val faker = Faker()
         return List(amount) {
             Event(
@@ -38,3 +44,4 @@ class DataViewModel : ViewModel() {
         }
     }
 }
+
