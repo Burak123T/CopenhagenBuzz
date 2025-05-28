@@ -35,7 +35,8 @@ class DataViewModel : ViewModel() {
             Event(
                 eventName = faker.rockBand().name(),
                 eventLocation = faker.address().fullAddress(),
-                eventDate = faker.date().birthday().toString(),
+                eventStartDate = faker.date().birthday().time,
+                eventEndDate = faker.date().birthday().time,
                 eventType = faker.gameOfThrones().character(),
                 description = faker.lorem().paragraph(),
                 photoUrl = faker.internet().avatar(),

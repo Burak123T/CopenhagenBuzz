@@ -11,6 +11,7 @@ import com.google.firebase.auth.FirebaseAuth
 import com.squareup.picasso.Picasso
 import dk.itu.moapd.copenhagenbuzz.buoe.R
 import dk.itu.moapd.copenhagenbuzz.buoe.model.Event
+import java.util.Date
 
 class EventAdapter(
     context: Context,
@@ -31,7 +32,8 @@ class EventAdapter(
 
             titleTextView.text = event.eventName
             descriptionTextView.text = event.description
-            dateTextView.text = event.eventDate
+            val getEndEventTime = event.eventEndDate?.let { Date(it) }
+            dateTextView.text = getEndEventTime.toString()
 
             if(getFBAuthentication.currentUser != null){
                 if(event.isFavorite){
