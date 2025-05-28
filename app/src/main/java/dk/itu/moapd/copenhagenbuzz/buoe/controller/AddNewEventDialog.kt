@@ -17,6 +17,9 @@ class AddNewEventDialog: DialogFragment() {
 
     private lateinit var dialogBinding: DialogAddNewEventBinding
 
+    private var saveStartDate: Long? = null
+    private var saveEndDate: Long? = null
+
     // An instance of the Event class
     private var event: Event = Event() // Initialize with empty strings
 
@@ -50,7 +53,9 @@ class AddNewEventDialog: DialogFragment() {
             datePickerBuilder.setTitleText("Select start/end date")
             val datePicker = datePickerBuilder.build()
 
-            datePicker.addOnPositiveButtonClickListener {
+            datePicker.addOnPositiveButtonClickListener { selection ->
+                saveStartDate = selection.first
+                saveEndDate = selection.second
                 dialogBinding.editTextEventDate.setText(datePicker.headerText)
 
                 // Clear prev errors if they have appeared (not adding this have caused trouble before)
@@ -70,7 +75,8 @@ class AddNewEventDialog: DialogFragment() {
             // Update the new event object attributes.
             event = event.copy(eventName = dialogBinding.editTextEventName.text.toString())
             event = event.copy(eventLocation = dialogBinding.editTextEventLocation.text.toString())
-            event = event.copy(eventDate = dialogBinding.editTextEventDate.text.toString())
+            event = event.copy(eventStartDate = saveStartDate)
+            event = event.copy(eventEndDate = saveEndDate)
             event = event.copy(description = dialogBinding.editTextEventDescription.text.toString())
 
             listener?.onEventAdded(event)
