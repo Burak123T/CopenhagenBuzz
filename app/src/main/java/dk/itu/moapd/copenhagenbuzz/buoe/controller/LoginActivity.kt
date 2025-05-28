@@ -11,7 +11,8 @@ import com.firebase.ui.auth.FirebaseAuthUIActivityResultContract
 import com.firebase.ui.auth.data.model.FirebaseAuthUIAuthenticationResult
 import com.google.firebase.auth.FirebaseAuth
 import dk.itu.moapd.copenhagenbuzz.buoe.databinding.ActivityLoginBinding
-
+import io.github.cdimascio.dotenv.Dotenv;
+import io.github.cdimascio.dotenv.dotenv
 
 /**
  * The login activity of the application. Acts as the main activity, where the user can login
@@ -31,6 +32,7 @@ class LoginActivity : AppCompatActivity() {
         loginBinding = ActivityLoginBinding.inflate(layoutInflater)
         setContentView(loginBinding.root) // Set root view of binding the content view
 
+
         loginBinding.loginButton.setOnClickListener {
             val auth = FirebaseAuth.getInstance()
             if (auth.currentUser != null) {
@@ -48,7 +50,7 @@ class LoginActivity : AppCompatActivity() {
             finish()
         }
 
-        ViewCompat.setOnApplyWindowInsetsListener(loginBinding.main) { v, insets -> // Use binding.main
+        ViewCompat.setOnApplyWindowInsetsListener(loginBinding.main) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
@@ -66,7 +68,8 @@ class LoginActivity : AppCompatActivity() {
      */
     private fun startSignIn() {
         val signInIntent = AuthUI.getInstance()
-            .createSignInIntentBuilder() // ... options ...
+            .createSignInIntentBuilder()
+            .setAvailableProviders(arrayListOf(AuthUI.IdpConfig.EmailBuilder().build()))
             .build()
 
         signInLauncher.launch(signInIntent)

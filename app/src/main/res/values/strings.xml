@@ -35,10 +35,12 @@
     <string name="example_image">Example Image</string>
     <string name="timeline">Timeline</string>
     <string name="maps">Maps</string>
+    <string name="enable_maps">Please enable Maps to view events</string>
     <string name="save_event">Save Event</string>
     <string name="favorites">Favorites</string>
     <string name="calendar">Calendar</string>
     <string name="save_event_for_later">Save event for later</string>
     <string name="login">Login</string>
     <string name="guest">Guest</string>
+    <string name="click_to_enable_locations">Click to enable locations</string>
 </resources>

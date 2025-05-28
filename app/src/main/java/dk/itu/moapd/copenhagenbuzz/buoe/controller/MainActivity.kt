@@ -74,7 +74,7 @@ class MainActivity : AppCompatActivity(), AddNewEventDialog.AddEventDialogListen
 
         if(getIsLoggedIn){
             contentBinding.toolAppBar.setNavigationIcon(R.drawable.baseline_arrow_circle_right_24)
-            showMessage(view, "Logged in as USER")
+            showMessage(view, "Logged in as: ${getFBAuthentication.currentUser?.displayName}")
             contentBinding.toolAppBar.setNavigationOnClickListener {
                 showMessage(view, "Logging out...")
                 getFBAuthentication.signOut()

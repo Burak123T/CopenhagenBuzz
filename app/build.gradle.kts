@@ -2,6 +2,7 @@ plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
     id("com.google.gms.google-services")
+    id("com.google.android.libraries.mapsplatform.secrets-gradle-plugin")
 }
 
 android {
@@ -46,6 +47,8 @@ dependencies {
 
     implementation(libs.firebase.ui.auth)
 
+    implementation(libs.dotenv.kotlin)
+
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
     implementation(libs.material)
@@ -55,6 +58,7 @@ dependencies {
     implementation(libs.androidx.activity)
     implementation(libs.javafaker)
     implementation(libs.picasso)
+    implementation(libs.play.services.location)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
