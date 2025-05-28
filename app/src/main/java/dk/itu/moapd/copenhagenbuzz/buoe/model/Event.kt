@@ -9,5 +9,9 @@ data class Event(
     val photoUrl: String = "",
     val userId: String = "",
     val isFavorite: Boolean = false
-)
+) {
+    constructor() : this(null.toString(), null.toString(), null, null,
+        null.toString(), null.toString(), null.toString(), null.toString(), false
+    )
+}
 

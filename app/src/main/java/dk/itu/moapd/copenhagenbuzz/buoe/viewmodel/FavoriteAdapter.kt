@@ -1,34 +1,31 @@
 package dk.itu.moapd.copenhagenbuzz.buoe.viewmodel
 
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import android.widget.AdapterView
 import androidx.recyclerview.widget.RecyclerView
+import com.firebase.ui.database.FirebaseRecyclerAdapter
+import com.firebase.ui.database.FirebaseRecyclerOptions
 import dk.itu.moapd.copenhagenbuzz.buoe.databinding.FavoriteRowItemBinding
 import dk.itu.moapd.copenhagenbuzz.buoe.model.Event
 
-class FavoriteAdapter(
-    private var data: List<Event>
-) : RecyclerView.Adapter<FavoriteAdapter.Holder>() {
+class FavoriteAdapter(options: FirebaseRecyclerOptions<Event>
+) : FirebaseRecyclerAdapter<Event, FavoriteAdapter.ViewHolder>(options) {
 
-    inner class Holder(val binding: FavoriteRowItemBinding)
-        : RecyclerView.ViewHolder(binding.root)
+    inner class ViewHolder(private val binding: FavoriteRowItemBinding)
+        : RecyclerView.ViewHolder(binding.root) {
+        fun bind(e: Event){
+            binding.textViewEventName.text = e.eventName
+        }
+        }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): Holder {
-        val binding = FavoriteRowItemBinding.inflate(
-            LayoutInflater.from(parent.context), parent, false)
-        return Holder(binding)
+    override fun onCreateViewHolder(parent: ViewGroup,
+                                    viewType: Int): ViewHolder {
+        return ViewHolder(FavoriteRowItemBinding.inflate(LayoutInflater.from(parent.context),
+            parent, false))
     }
-
-    override fun onBindViewHolder(holder: Holder, position: Int) {
-        val event = data[position]
-        holder.binding.textViewEventName.text = event.eventName
-        holder.binding.textViewEventType.text = event.eventType
-    }
-
-    override fun getItemCount() = data.size
-
-    fun update(newData: List<Event>) {
-        data = newData
-        notifyDataSetChanged()
+    override fun onBindViewHolder(holder: FavoriteAdapter.ViewHolder, position: Int, model: Event) {
+        holder.bind(model)
     }
 }

@@ -46,6 +46,7 @@ dependencies {
     implementation(libs.firebase.analytics)
 
     implementation(libs.firebase.ui.auth)
+    implementation(libs.firebase.ui.database)
 
     implementation(libs.dotenv.kotlin)
 
