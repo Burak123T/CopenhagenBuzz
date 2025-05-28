@@ -61,6 +61,12 @@ class EventAdapter(
         return view
     }
 
+    fun update(newData: List<Event>) {
+        clear()            // built-in ArrayAdapter method
+        addAll(newData)    // built-in ArrayAdapter method
+        notifyDataSetChanged()
+    }
+
     inner class ViewHolder(view: View) {
         val titleTextView: TextView = view.findViewById(R.id.eventNameTextView)
         val descriptionTextView: TextView = view.findViewById(R.id.eventDescriptionTextView)

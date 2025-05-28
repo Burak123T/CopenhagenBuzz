@@ -45,6 +45,7 @@ class LoginActivity : AppCompatActivity() {
             val goToMainActivityIntent = Intent(this, MainActivity::class.java)
             goToMainActivityIntent.putExtra("isLoggedIn", false)
             startActivity(goToMainActivityIntent)
+            finish()
         }
 
         ViewCompat.setOnApplyWindowInsetsListener(loginBinding.main) { v, insets -> // Use binding.main
@@ -79,6 +80,7 @@ class LoginActivity : AppCompatActivity() {
             val goToMainActivityIntent = Intent(this, MainActivity::class.java)
             goToMainActivityIntent.putExtra("isLoggedIn", true)
             startActivity(goToMainActivityIntent)
+            finish()
         } else {
             if(result?.idpResponse != null){
                 println("Error: ${result.idpResponse}")
